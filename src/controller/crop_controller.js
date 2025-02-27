@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getAllCrops = exports.createCrop = void 0;
+exports.updateCrop = exports.getAllCrops = exports.createCrop = void 0;
 const client_1 = require("@prisma/client");
 const cropClient = new client_1.PrismaClient().crop;
 const createCrop = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -38,3 +38,20 @@ const getAllCrops = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
     }
 });
 exports.getAllCrops = getAllCrops;
+const updateCrop = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const cropData = req.body;
+        const crop = yield cropClient.update({
+            where: {
+                id: cropData.id
+            },
+            data: cropData
+        });
+        res.status(200).json(crop);
+    }
+    catch (error) {
+        console.log(error);
+        res.status(400).json(error);
+    }
+});
+exports.updateCrop = updateCrop;

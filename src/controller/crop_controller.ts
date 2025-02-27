@@ -26,3 +26,19 @@ export const getAllCrops = async (req : Request , res : Response) => {
     res.status(500).json(error);
   }
 }
+
+export const updateCrop = async (req : Request , res : Response) => {
+  try {
+    const cropData = req.body;
+    const crop = await cropClient.update({
+      where : {
+        id : cropData.id
+      },
+      data : cropData
+    })
+    res.status(200).json(crop);
+  } catch (error) {
+    console.log(error);
+    res.status(400).json(error);
+  }
+}

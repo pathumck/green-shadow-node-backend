@@ -5,4 +5,5 @@ const crop_controller_1 = require("../controller/crop_controller");
 const cropRouter = (0, express_1.Router)();
 cropRouter.post("/", crop_controller_1.createCrop);
 cropRouter.get("/", crop_controller_1.getAllCrops);
+cropRouter.put("/:id", crop_controller_1.updateCrop);
 exports.default = cropRouter;

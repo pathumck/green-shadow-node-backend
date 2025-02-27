@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.updateField = exports.getAllFields = exports.createField = void 0;
+exports.deleteField = exports.updateField = exports.getAllFields = exports.createField = void 0;
 const client_1 = require("@prisma/client");
 const fieldClient = new client_1.PrismaClient().field;
 const createField = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -55,3 +55,19 @@ const updateField = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
     }
 });
 exports.updateField = updateField;
+const deleteField = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const fieldId = req.params.id;
+        const field = yield fieldClient.delete({
+            where: {
+                id: fieldId
+            }
+        });
+        res.status(200).json(field);
+    }
+    catch (error) {
+        console.log(error);
+        res.status(400).json(error);
+    }
+});
+exports.deleteField = deleteField;

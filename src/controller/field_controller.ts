@@ -41,3 +41,18 @@ export const updateField = async (req : Request , res : Response) => {
     res.status(400).json(error);
   }
 }
+
+export const deleteField = async (req : Request , res : Response) => {
+  try {
+    const fieldId = req.params.id;
+    const field = await fieldClient.delete({
+      where : {
+        id : fieldId
+      }
+    })
+    res.status(200).json(field);
+  } catch (error) {
+    console.log(error);
+    res.status(400).json(error);
+  }
+}

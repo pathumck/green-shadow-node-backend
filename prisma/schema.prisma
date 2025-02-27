@@ -30,3 +30,16 @@ model Crop {
   season String
   image String @db.LongText
 }
+
+model Staff {
+  id String @id
+  firstName String
+  lastName String
+  birthDay String
+  gender String
+  phone String
+  email String
+  address String
+  designation String
+  role String
+}

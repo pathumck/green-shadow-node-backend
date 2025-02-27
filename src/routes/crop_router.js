@@ -6,4 +6,5 @@ const cropRouter = (0, express_1.Router)();
 cropRouter.post("/", crop_controller_1.createCrop);
 cropRouter.get("/", crop_controller_1.getAllCrops);
 cropRouter.put("/:id", crop_controller_1.updateCrop);
+cropRouter.delete("/:id", crop_controller_1.deleteCrop);
 exports.default = cropRouter;

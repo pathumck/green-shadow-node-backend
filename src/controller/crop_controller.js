@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.updateCrop = exports.getAllCrops = exports.createCrop = void 0;
+exports.deleteCrop = exports.updateCrop = exports.getAllCrops = exports.createCrop = void 0;
 const client_1 = require("@prisma/client");
 const cropClient = new client_1.PrismaClient().crop;
 const createCrop = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -55,3 +55,19 @@ const updateCrop = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
     }
 });
 exports.updateCrop = updateCrop;
+const deleteCrop = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const cropId = req.params.id;
+        const crop = yield cropClient.delete({
+            where: {
+                id: cropId
+            }
+        });
+        res.status(200).json(crop);
+    }
+    catch (error) {
+        console.log(error);
+        res.status(400).json(error);
+    }
+});
+exports.deleteCrop = deleteCrop;

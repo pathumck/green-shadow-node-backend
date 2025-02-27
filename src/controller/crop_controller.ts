@@ -42,3 +42,18 @@ export const updateCrop = async (req : Request , res : Response) => {
     res.status(400).json(error);
   }
 }
+
+export const deleteCrop = async (req : Request , res : Response) => {
+  try {
+    const cropId = req.params.id;
+    const crop = await cropClient.delete({
+      where : {
+        id : cropId
+      }
+    })
+    res.status(200).json(crop);
+  } catch (error) {
+    console.log(error);
+    res.status(400).json(error);
+  }
+}

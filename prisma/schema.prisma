@@ -21,3 +21,12 @@ model Field {
   imageOne String @db.LongText
   imageTwo String @db.LongText
 }
+
+model Crop {
+  id String @id
+  commonName String
+  scientificName String
+  category String
+  season String
+  image String @db.LongText
+}

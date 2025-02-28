@@ -14,32 +14,58 @@ datasource db {
 }
 
 model Field {
-  id String @id
-  name String 
+  id       String @id
+  name     String
   location String
-  size Int
+  size     Int
   imageOne String @db.LongText
   imageTwo String @db.LongText
+
+  logs     Log[] 
 }
 
 model Crop {
-  id String @id
-  commonName String
+  id             String @id
+  commonName     String
   scientificName String
-  category String
-  season String
-  image String @db.LongText
+  category       String
+  season         String
+  image          String @db.LongText
+
+  logs           Log[]
 }
 
 model Staff {
-  id String @id
-  firstName String
-  lastName String
-  birthDay String
-  gender String
-  phone String
-  email String
-  address String
+  id          String @id
+  firstName  String
+  lastName   String
+  birthDay   String
+  gender     String
+  phone      String
+  email      String
+  address    String
   designation String
-  role String
+  role       String
+}
+
+model User {
+  id       String @id
+  username String @unique
+  password String
+  logs     Log[]
+}
+
+model Log {
+  id          String   @id
+  date        DateTime
+  status      String
+  description String
+  image       String   @db.LongText
+  fieldId     String
+  cropId      String
+  userId      String
+
+  field Field @relation(fields: [fieldId], references: [id], onDelete: Cascade)
+  crop  Crop  @relation(fields: [cropId], references: [id], onDelete: Cascade)
+  user  User  @relation(fields: [userId], references: [id], onDelete: Cascade)
 }

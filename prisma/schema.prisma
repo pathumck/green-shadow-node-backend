@@ -21,7 +21,7 @@ model Field {
   imageOne String @db.LongText
   imageTwo String @db.LongText
 
-  logs     Log[] 
+  logs Log[]
 }
 
 model Crop {
@@ -32,20 +32,20 @@ model Crop {
   season         String
   image          String @db.LongText
 
-  logs           Log[]
+  logs Log[]
 }
 
 model Staff {
   id          String @id
-  firstName  String
-  lastName   String
-  birthDay   String
-  gender     String
-  phone      String
-  email      String
-  address    String
+  firstName   String
+  lastName    String
+  birthDay    String
+  gender      String
+  phone       String
+  email       String
+  address     String
   designation String
-  role       String
+  role        String
 }
 
 model User {

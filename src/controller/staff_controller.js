@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.updateStaff = exports.getAllStaff = exports.createStaff = void 0;
+exports.deleteStaff = exports.updateStaff = exports.getAllStaff = exports.createStaff = void 0;
 const client_1 = require("@prisma/client");
 const staffClient = new client_1.PrismaClient().staff;
 const createStaff = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -43,9 +43,9 @@ const updateStaff = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
         const staffData = req.body;
         const staff = yield staffClient.update({
             where: {
-                id: staffData.id
+                id: staffData.id,
             },
-            data: staffData
+            data: staffData,
         });
         res.status(200).json(staff);
     }
@@ -55,3 +55,19 @@ const updateStaff = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
     }
 });
 exports.updateStaff = updateStaff;
+const deleteStaff = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const staffId = req.params.id;
+        const staff = yield staffClient.delete({
+            where: {
+                id: staffId,
+            },
+        });
+        res.status(200).json(staff);
+    }
+    catch (error) {
+        console.log(error);
+        res.status(400).json(error);
+    }
+});
+exports.deleteStaff = deleteStaff;

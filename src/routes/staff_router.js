@@ -6,4 +6,5 @@ const staffRouter = (0, express_1.Router)();
 staffRouter.post("/", staff_controller_1.createStaff);
 staffRouter.get("/", staff_controller_1.getAllStaff);
 staffRouter.put("/:id", staff_controller_1.updateStaff);
+staffRouter.delete("/:id", staff_controller_1.deleteStaff);
 exports.default = staffRouter;

@@ -15,7 +15,7 @@ app.use("/field", fieldRouter);
 app.use("/crop", cropRouter);
 app.use("/staff", staffRouter);
 app.use("/log", logRouter);
-app.get("/", (req : Request , res : Response) => {
+app.get("/", (req: Request, res: Response) => {
   res.send("Hello World!");
 });
 

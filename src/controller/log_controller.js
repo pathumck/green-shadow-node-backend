@@ -16,7 +16,7 @@ const createLog = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const logData = req.body;
         logData.id = "LG-" + crypto.randomUUID().substring(0, 8);
-        logData.date = new Date();
+        logData.date = new Date().toISOString().split("T")[0];
         const log = yield logClient.create({
             data: logData,
         });

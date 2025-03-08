@@ -7,7 +7,7 @@ export const createLog = async (req: Request, res: Response) => {
   try {
     const logData = req.body;
     logData.id = "LG-" + crypto.randomUUID().substring(0, 8);
-    logData.date = new Date();
+    logData.date = new Date().toISOString().split("T")[0];
     const log = await logClient.create({
       data: logData,
     });

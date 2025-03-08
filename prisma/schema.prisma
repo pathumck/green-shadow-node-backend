@@ -57,7 +57,7 @@ model User {
 
 model Log {
   id          String   @id
-  date        DateTime
+  date        String
   status      String
   description String
   image       String   @db.LongText

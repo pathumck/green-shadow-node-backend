@@ -4,6 +4,7 @@ import cropRouter from "./routes/crop_router";
 import cors from "cors";
 import staffRouter from "./routes/staff_router";
 import logRouter from "./routes/log_router";
+import fieldCropsRouter from "./routes/field's_crops_router";
 
 const app = express();
 
@@ -15,6 +16,7 @@ app.use("/field", fieldRouter);
 app.use("/crop", cropRouter);
 app.use("/staff", staffRouter);
 app.use("/log", logRouter);
+app.use("/fieldCrops", fieldCropsRouter);
 app.get("/", (req: Request, res: Response) => {
   res.send("Hello World!");
 });

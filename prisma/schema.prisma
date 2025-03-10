@@ -21,7 +21,8 @@ model Field {
   imageOne String @db.LongText
   imageTwo String @db.LongText
 
-  logs Log[]
+  logs       Log[]
+  fieldCrops FieldCrop[]
 }
 
 model Crop {
@@ -32,7 +33,8 @@ model Crop {
   season         String
   image          String @db.LongText
 
-  logs Log[]
+  logs       Log[]
+  fieldCrops FieldCrop[]
 }
 
 model Staff {
@@ -56,11 +58,11 @@ model User {
 }
 
 model Log {
-  id          String   @id
+  id          String @id
   date        String
   status      String
   description String
-  image       String   @db.LongText
+  image       String @db.LongText
   fieldId     String
   cropId      String
   userId      String
@@ -68,4 +70,14 @@ model Log {
   field Field @relation(fields: [fieldId], references: [id], onDelete: Cascade)
   crop  Crop  @relation(fields: [cropId], references: [id], onDelete: Cascade)
   user  User  @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model FieldCrop {
+  fieldId String
+  cropId  String
+
+  field Field @relation(fields: [fieldId], references: [id], onDelete: Cascade)
+  crop  Crop  @relation(fields: [cropId], references: [id], onDelete: Cascade)
+
+  @@id([fieldId, cropId])
 }

@@ -23,6 +23,7 @@ model Field {
 
   logs       Log[]
   fieldCrops FieldCrop[]
+  fieldStaff FieldStaff[]
 }
 
 model Crop {
@@ -48,6 +49,8 @@ model Staff {
   address     String
   designation String
   role        String
+
+  fieldStaff FieldStaff[]
 }
 
 model User {
@@ -80,4 +83,14 @@ model FieldCrop {
   crop  Crop  @relation(fields: [cropId], references: [id], onDelete: Cascade)
 
   @@id([fieldId, cropId])
+}
+
+model FieldStaff {
+  fieldId String
+  staffId String
+
+  field Field @relation(fields: [fieldId], references: [id], onDelete: Cascade)
+  staff Staff @relation(fields: [staffId], references: [id], onDelete: Cascade)
+
+  @@id([fieldId, staffId])
 }

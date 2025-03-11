@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.createFieldStaff = void 0;
+exports.getAllFieldStaff = exports.createFieldStaff = void 0;
 const client_1 = require("@prisma/client");
 const fieldStaffClient = new client_1.PrismaClient().fieldStaff;
 const createFieldStaff = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -25,3 +25,13 @@ const createFieldStaff = (req, res) => __awaiter(void 0, void 0, void 0, functio
     }
 });
 exports.createFieldStaff = createFieldStaff;
+const getAllFieldStaff = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const fieldStaff = yield fieldStaffClient.findMany();
+        res.status(200).json(fieldStaff);
+    }
+    catch (error) {
+        res.status(500).json(error);
+    }
+});
+exports.getAllFieldStaff = getAllFieldStaff;

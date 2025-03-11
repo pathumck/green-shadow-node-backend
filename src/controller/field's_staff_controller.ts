@@ -23,3 +23,19 @@ export const getAllFieldStaff = async (req: Request, res: Response) => {
     res.status(500).json(error);
   }
 };
+
+export const deleteFieldStaff = async (req: Request, res: Response) => {
+  try {
+    const fieldStaff = await fieldStaffClient.delete({
+      where: {
+        fieldId_staffId: {
+          fieldId: req.params.fieldId,
+          staffId: req.params.staffId,
+        },
+      },
+    });
+    res.status(200).json(fieldStaff);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+};

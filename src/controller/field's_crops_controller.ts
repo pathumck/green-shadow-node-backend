@@ -12,7 +12,6 @@ export const createFieldCrop = async (req: Request, res: Response) => {
     res.status(200).json(fieldCrop);
   } catch (error) {
     res.status(400).json(error);
-    console.log(error);
   }
 };
 
@@ -21,7 +20,22 @@ export const getAllFieldCrops = async (req: Request, res: Response) => {
     const fieldCrops = await fieldCropClient.findMany();
     res.status(200).json(fieldCrops);
   } catch (error) {
-    console.log(error);
+    res.status(500).json(error);
+  }
+};
+
+export const deleteFieldCrop = async (req: Request, res: Response) => {
+  try {
+    const fieldCrop = await fieldCropClient.delete({
+      where: {
+        fieldId_cropId: {
+          fieldId: req.params.fieldId,
+          cropId: req.params.cropId,
+        },
+      },
+    });
+    res.status(200).json(fieldCrop);
+  } catch (error) {
     res.status(500).json(error);
   }
 };

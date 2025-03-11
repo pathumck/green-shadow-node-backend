@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getAllFieldCrops = exports.createFieldCrop = void 0;
+exports.deleteFieldCrop = exports.getAllFieldCrops = exports.createFieldCrop = void 0;
 const client_1 = require("@prisma/client");
 const fieldCropClient = new client_1.PrismaClient().fieldCrop;
 const createFieldCrop = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -22,7 +22,6 @@ const createFieldCrop = (req, res) => __awaiter(void 0, void 0, void 0, function
     }
     catch (error) {
         res.status(400).json(error);
-        console.log(error);
     }
 });
 exports.createFieldCrop = createFieldCrop;
@@ -32,8 +31,24 @@ const getAllFieldCrops = (req, res) => __awaiter(void 0, void 0, void 0, functio
         res.status(200).json(fieldCrops);
     }
     catch (error) {
-        console.log(error);
         res.status(500).json(error);
     }
 });
 exports.getAllFieldCrops = getAllFieldCrops;
+const deleteFieldCrop = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const fieldCrop = yield fieldCropClient.delete({
+            where: {
+                fieldId_cropId: {
+                    fieldId: req.params.fieldId,
+                    cropId: req.params.cropId,
+                },
+            },
+        });
+        res.status(200).json(fieldCrop);
+    }
+    catch (error) {
+        res.status(500).json(error);
+    }
+});
+exports.deleteFieldCrop = deleteFieldCrop;

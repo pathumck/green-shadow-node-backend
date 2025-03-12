@@ -13,7 +13,15 @@ export const createLog = async (req: Request, res: Response) => {
     });
     res.status(200).json(log);
   } catch (error) {
-    console.log(error);
     res.status(400).json(error);
+  }
+};
+
+export const getAllLogs = async (req: Request, res: Response) => {
+  try {
+    const logs = await logClient.findMany();
+    res.status(200).json(logs);
+  } catch (error) {
+    res.status(500).json(error);
   }
 };

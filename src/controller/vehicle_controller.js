@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.createVehicle = void 0;
+exports.getAllVehicles = exports.createVehicle = void 0;
 const client_1 = require("@prisma/client");
 const vehiclClient = new client_1.PrismaClient().vehicle;
 const createVehicle = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -29,7 +29,17 @@ const createVehicle = (req, res) => __awaiter(void 0, void 0, void 0, function* 
         res.status(200).json(vehicle);
     }
     catch (error) {
-        res.status(400).json({ message: "Internal Server Error" });
+        res.status(400).json({ message: "Internal server error." });
     }
 });
 exports.createVehicle = createVehicle;
+const getAllVehicles = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const vehicles = yield vehiclClient.findMany();
+        res.status(200).json(vehicles);
+    }
+    catch (error) {
+        res.status(400).json({ message: "Internal server error." });
+    }
+});
+exports.getAllVehicles = getAllVehicles;

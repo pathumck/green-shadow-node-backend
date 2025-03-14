@@ -19,6 +19,15 @@ export const createVehicle = async (req: Request, res: Response) => {
     });
     res.status(200).json(vehicle);
   } catch (error) {
-    res.status(400).json({message : "Internal Server Error"});
+    res.status(400).json({message : "Internal server error."});
   }
 };
+
+export const getAllVehicles = async (req:Request, res: Response)=> {
+  try {
+    const vehicles = await vehiclClient.findMany()
+    res.status(200).json(vehicles)
+  } catch(error) {
+    res.status(400).json({message : "Internal server error."})
+  }
+}

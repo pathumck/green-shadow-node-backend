@@ -1,8 +1,9 @@
 import { Router } from "express";
-import { createVehicle } from "../controller/vehicle_controller"; // Check if correct path
+import { createVehicle, getAllVehicles } from "../controller/vehicle_controller"; // Check if correct path
 
 const vehicleRouter = Router();
 
 vehicleRouter.post("/", createVehicle);
+vehicleRouter.get("/", getAllVehicles)
 
 export default vehicleRouter;

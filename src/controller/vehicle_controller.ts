@@ -31,3 +31,18 @@ export const getAllVehicles = async (req:Request, res: Response)=> {
     res.status(400).json({message : "Internal server error."})
   }
 }
+
+export const updateVehicle = async (req : Request , res : Response) => {
+  try {
+    const vehicleData = req.body;
+    const vehicle = await vehiclClient.update({
+      where : {
+        id : vehicleData.id
+      },
+      data : vehicleData
+    })
+    res.status(200).json(vehicle);
+  } catch (error) {
+    res.status(400).json({message : "Internal server error."})
+  }
+}

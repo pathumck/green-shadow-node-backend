@@ -46,3 +46,17 @@ export const updateVehicle = async (req : Request , res : Response) => {
     res.status(400).json({message : "Internal server error."})
   }
 }
+
+export const deleteVehicle = async (req : Request , res : Response) => {
+  try {
+    const vehicleId = req.params.id;
+    const vehicle = await vehiclClient.delete({
+      where : {
+        id : vehicleId
+      }
+    })
+    res.status(200).json(vehicle);
+  } catch (error) {
+    res.status(400).json({message : "Internal server error."})
+  }
+}

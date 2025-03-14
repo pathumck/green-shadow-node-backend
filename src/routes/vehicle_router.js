@@ -6,4 +6,5 @@ const vehicleRouter = (0, express_1.Router)();
 vehicleRouter.post("/", vehicle_controller_1.createVehicle);
 vehicleRouter.get("/", vehicle_controller_1.getAllVehicles);
 vehicleRouter.put("/:id", vehicle_controller_1.updateVehicle);
+vehicleRouter.delete("/:id", vehicle_controller_1.deleteVehicle);
 exports.default = vehicleRouter;

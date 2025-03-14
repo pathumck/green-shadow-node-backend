@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.updateVehicle = exports.getAllVehicles = exports.createVehicle = void 0;
+exports.deleteVehicle = exports.updateVehicle = exports.getAllVehicles = exports.createVehicle = void 0;
 const client_1 = require("@prisma/client");
 const vehiclClient = new client_1.PrismaClient().vehicle;
 const createVehicle = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -59,3 +59,18 @@ const updateVehicle = (req, res) => __awaiter(void 0, void 0, void 0, function* 
     }
 });
 exports.updateVehicle = updateVehicle;
+const deleteVehicle = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const vehicleId = req.params.id;
+        const vehicle = yield vehiclClient.delete({
+            where: {
+                id: vehicleId
+            }
+        });
+        res.status(200).json(vehicle);
+    }
+    catch (error) {
+        res.status(400).json({ message: "Internal server error." });
+    }
+});
+exports.deleteVehicle = deleteVehicle;

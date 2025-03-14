@@ -6,6 +6,7 @@ import staffRouter from "./routes/staff_router";
 import logRouter from "./routes/log_router";
 import fieldCropsRouter from "./routes/field's_crops_router";
 import fieldStaffRouter from "./routes/field's_staff_router";
+import vehicleRouter from "./routes/vehicle_router";
 
 const app = express();
 
@@ -19,6 +20,7 @@ app.use("/staff", staffRouter);
 app.use("/log", logRouter);
 app.use("/fieldCrops", fieldCropsRouter);
 app.use("/fieldStaff", fieldStaffRouter);
+app.use("/vehicle", vehicleRouter)
 app.get("/", (req: Request, res: Response) => {
   res.send("Hello World!");
 });

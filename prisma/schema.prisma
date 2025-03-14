@@ -51,6 +51,19 @@ model Staff {
   role        String
 
   fieldStaff FieldStaff[]
+  vehicles   Vehicle[]
+}
+
+model Vehicle {
+  id       String @id
+  number   String @unique
+  category String
+  fuelType String
+  remarks  String
+  status   String
+  staffId  String
+
+  staff Staff @relation(fields: [staffId], references: [id], onDelete: Cascade)
 }
 
 model User {

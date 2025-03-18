@@ -70,6 +70,7 @@ model User {
   id       String @id
   username String @unique
   password String
+  role     String 
   logs     Log[]
 }
 

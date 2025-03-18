@@ -7,6 +7,7 @@ export const createStaff = async (req: Request, res: Response) => {
   try {
     const staffData = req.body;
     staffData.id = "ST-" + crypto.randomUUID().substring(0, 8);
+    staffData.registerDate = new Date().toISOString().split("T")[0];
     const staff = await staffClient.create({
       data: staffData,
     });

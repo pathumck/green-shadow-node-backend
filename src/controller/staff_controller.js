@@ -16,6 +16,7 @@ const createStaff = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
     try {
         const staffData = req.body;
         staffData.id = "ST-" + crypto.randomUUID().substring(0, 8);
+        staffData.registerDate = new Date().toISOString().split("T")[0];
         const staff = yield staffClient.create({
             data: staffData,
         });

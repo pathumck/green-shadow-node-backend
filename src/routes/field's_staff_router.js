@@ -2,8 +2,9 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 const field_s_staff_controller_1 = require("../controller/field's_staff_controller");
+const authMiddleware_1 = require("../middlewares/authMiddleware");
 const fieldStaffRouter = (0, express_1.Router)();
-fieldStaffRouter.post("/", field_s_staff_controller_1.createFieldStaff);
-fieldStaffRouter.get("/", field_s_staff_controller_1.getAllFieldStaff);
-fieldStaffRouter.delete("/:fieldId/:staffId", field_s_staff_controller_1.deleteFieldStaff);
+fieldStaffRouter.post("/", authMiddleware_1.authenticateUser, (0, authMiddleware_1.authorizeRole)("MANAGER", "ADMIN", "SCIENTIST"), field_s_staff_controller_1.createFieldStaff);
+fieldStaffRouter.get("/", authMiddleware_1.authenticateUser, (0, authMiddleware_1.authorizeRole)("MANAGER", "ADMIN", "SCIENTIST"), field_s_staff_controller_1.getAllFieldStaff);
+fieldStaffRouter.delete("/:fieldId/:staffId", authMiddleware_1.authenticateUser, (0, authMiddleware_1.authorizeRole)("MANAGER", "ADMIN", "SCIENTIST"), field_s_staff_controller_1.deleteFieldStaff);
 exports.default = fieldStaffRouter;

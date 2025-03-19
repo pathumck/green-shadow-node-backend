@@ -46,6 +46,7 @@ const authorizeRole = (...roles) => {
                 .status(403)
                 .json({ message: "Access denied. Insufficient permissions." });
         }
+        delete req.body.user;
         next();
     };
 };

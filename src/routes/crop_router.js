@@ -2,9 +2,10 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 const crop_controller_1 = require("../controller/crop_controller");
+const authMiddleware_1 = require("../middlewares/authMiddleware");
 const cropRouter = (0, express_1.Router)();
-cropRouter.post("/", crop_controller_1.createCrop);
-cropRouter.get("/", crop_controller_1.getAllCrops);
-cropRouter.put("/:id", crop_controller_1.updateCrop);
-cropRouter.delete("/:id", crop_controller_1.deleteCrop);
+cropRouter.post("/", authMiddleware_1.authenticateUser, (0, authMiddleware_1.authorizeRole)("MANAGER", "ADMIN", "SCIENTIST"), crop_controller_1.createCrop);
+cropRouter.get("/", authMiddleware_1.authenticateUser, (0, authMiddleware_1.authorizeRole)("MANAGER", "ADMIN", "SCIENTIST"), crop_controller_1.getAllCrops);
+cropRouter.put("/:id", authMiddleware_1.authenticateUser, (0, authMiddleware_1.authorizeRole)("MANAGER", "ADMIN", "SCIENTIST"), crop_controller_1.updateCrop);
+cropRouter.delete("/:id", authMiddleware_1.authenticateUser, (0, authMiddleware_1.authorizeRole)("MANAGER", "ADMIN", "SCIENTIST"), crop_controller_1.deleteCrop);
 exports.default = cropRouter;

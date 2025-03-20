@@ -14,6 +14,7 @@ const field_s_staff_router_1 = __importDefault(require("./routes/field's_staff_r
 const vehicle_router_1 = __importDefault(require("./routes/vehicle_router"));
 const auth_router_1 = __importDefault(require("./routes/auth_router"));
 const cookie_parser_1 = __importDefault(require("cookie-parser"));
+const equipment_router_1 = __importDefault(require("./routes/equipment_router"));
 const app = (0, express_1.default)();
 app.use((0, cookie_parser_1.default)());
 const corsOptions = {
@@ -33,6 +34,7 @@ app.use("/log", log_router_1.default);
 app.use("/fieldCrops", field_s_crops_router_1.default);
 app.use("/fieldStaff", field_s_staff_router_1.default);
 app.use("/vehicle", vehicle_router_1.default);
+app.use("/equipment", equipment_router_1.default);
 app.get("/health", (req, res) => {
     res.status(200).json({ message: "Healthy" });
 });

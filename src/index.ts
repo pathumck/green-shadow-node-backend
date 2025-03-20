@@ -9,6 +9,7 @@ import fieldStaffRouter from "./routes/field's_staff_router";
 import vehicleRouter from "./routes/vehicle_router";
 import authRouter from "./routes/auth_router";
 import cookieParser from "cookie-parser";
+import equipmentRouter from "./routes/equipment_router";
 
 const app = express();
 
@@ -34,6 +35,7 @@ app.use("/log", logRouter);
 app.use("/fieldCrops", fieldCropsRouter);
 app.use("/fieldStaff", fieldStaffRouter);
 app.use("/vehicle", vehicleRouter);
+app.use("/equipment", equipmentRouter);
 app.get("/health", (req: Request, res: Response) => {
   res.status(200).json({ message: "Healthy" });
 });
